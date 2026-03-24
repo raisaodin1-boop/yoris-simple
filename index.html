@@ -1,165 +1,112 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>YORIX - Marketplace Cameroun</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>YORIX - Marketplace Cameroun</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f5f5;
-    }
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f5f5f5;
+}
 
-    header {
-      background: #0f172a;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-    }
+header {
+  background: black;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
 
-    .hero {
-      background: #22c55e;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+.banner {
+  background: green;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
 
-    .container {
-      padding: 15px;
-    }
+.container {
+  padding: 20px;
+}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 15px;
-    }
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 15px;
+}
 
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+.card {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
 
-    .card img {
-      width: 100%;
-      border-radius: 8px;
-    }
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
 
-    .title {
-      font-size: 14px;
-      margin: 5px 0;
-    }
-
-    .price {
-      color: green;
-      font-weight: bold;
-    }
-
-    button {
-      background: #0f172a;
-      color: white;
-      border: none;
-      padding: 8px;
-      width: 100%;
-      border-radius: 5px;
-      margin-top: 5px;
-      cursor: pointer;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      font-size: 12px;
-      background: #eee;
-      margin-top: 20px;
-    }
-  </style>
+button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+</style>
 
 </head>
 
 <body>
 
 <header>
-  YORIX - Marketplace Cameroun 🇨🇲
+<h2>YORIX - Marketplace Cameroun 🇨🇲</h2>
 </header>
 
-<div class="hero">
-  Achetez local • Vendez facilement • Livraison rapide
+<div class="banner">
+Achetez local • Vendez facilement • Livraison rapide
 </div>
 
 <div class="container">
+<h3>Produits populaires</h3>
 
-  <h3>Produits populaires</h3>
-
-  <div class="products">
-
-```
-<div class="card">
-  <img src="https://via.placeholder.com/200">
-  <const products = [
-  {name:"Sac africain cuir", price:"15000 FCFA"},
-  {name:"Chaussures homme Dakar", price:"20000 FCFA"},
-  {name:"Perruque naturelle Lagos", price:"25000 FCFA"},
-  {name:"Poisson fumé Douala", price:"5000 FCFA"},
-  {name:"Piment rouge Cameroun", price:"2000 FCFA"},
-  {name:"Huile de palme bio", price:"3000 FCFA"},
-  {name:"Riz local 5kg", price:"8000 FCFA"},
-  {name:"Montre homme luxe", price:"18000 FCFA"},
-  {name:"Sac à main femme", price:"12000 FCFA"},
-  {name:"Sandales cuir", price:"7000 FCFA"},
-  {name:"Tissu pagne wax", price:"6000 FCFA"},
-  {name:"Téléphone occasion", price:"45000 FCFA"},
-  {name:"Casque audio", price:"10000 FCFA"},
-  {name:"Chaise plastique", price:"5000 FCFA"},
-  {name:"Table bois local", price:"25000 FCFA"},
-  {name:"Ventilateur", price:"20000 FCFA"},
-  {name:"Microphone studio", price:"15000 FCFA"},
-  {name:"Ordinateur portable", price:"150000 FCFA"},
-  {name:"Chaussures enfants", price:"8000 FCFA"},
-  {name:"Savon noir africain", price:"1500 FCFA"}
-];
+<div class="products" id="products"></div>
 </div>
-
-<div class="card">
-  <img src="https://via.placeholder.com/200">
-  <div class="title">Chaussures homme</div>
-  <div class="price">20 000 FCFA</div>
-  <button onclick="addToCart()">Ajouter au panier</button>
-</div>
-
-<div class="card">
-  <img src="https://via.placeholder.com/200">
-  <div class="title">Perruque naturelle</div>
-  <div class="price">25 000 FCFA</div>
-  <button onclick="addToCart()">Ajouter au panier</button>
-</div>
-
-<div class="card">
-  <img src="https://via.placeholder.com/200">
-  <div class="title">Poisson fumé</div>
-  <div class="price">5 000 FCFA</div>
-  <button onclick="addToCart()">Ajouter au panier</button>
-</div>
-```
-
-  </div>
-
-</div>
-
-<footer>
-  © 2026 YORIX - Tous droits réservés
-</footer>
 
 <script>
-function addToCart() {
-  alert("Produit ajouté au panier !");
-}
+const products = [
+{name:"Sac africain cuir", price:"15000 FCFA", img:"https://images.unsplash.com/photo-1593032465175-481ac7f401a0"},
+{name:"Chaussures homme Dakar", price:"20000 FCFA", img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+{name:"Perruque naturelle Lagos", price:"25000 FCFA", img:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"},
+{name:"Poisson fumé Douala", price:"5000 FCFA", img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d"},
+{name:"Piment rouge Cameroun", price:"2000 FCFA", img:"https://images.unsplash.com/photo-1589308078059-be1415eab4c3"},
+{name:"Huile de palme bio", price:"3000 FCFA", img:"https://images.unsplash.com/photo-1604908177522-429e1a97c7c1"},
+{name:"Riz local 5kg", price:"8000 FCFA", img:"https://images.unsplash.com/photo-1586201375761-83865001e31c"},
+{name:"Montre homme luxe", price:"18000 FCFA", img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49"},
+{name:"Sac à main femme", price:"12000 FCFA", img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3"},
+{name:"Sandales cuir", price:"7000 FCFA", img:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb"},
+{name:"Tissu pagne wax", price:"6000 FCFA", img:"https://images.unsplash.com/photo-1593032465175-481ac7f401a0"},
+{name:"Téléphone occasion", price:"45000 FCFA", img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"},
+{name:"Casque audio", price:"10000 FCFA", img:"https://images.unsplash.com/photo-1518441902111-a5e9c7e1f3d7"},
+{name:"Chaise plastique", price:"5000 FCFA", img:"https://images.unsplash.com/photo-1582582494700-76b7c0c1c1a6"}
+];
+
+const container = document.getElementById("products");
+
+products.forEach(p => {
+  container.innerHTML += `
+    <div class="card">
+      <img src="${p.img}">
+      <h4>${p.name}</h4>
+      <p>${p.price}</p>
+      <button>Acheter</button>
+    </div>
+  `;
+});
 </script>
 
 </body>

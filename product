@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Produit</title>
+</head>
+
+<body>
+
+<a href="index.html">⬅ Retour</a>
+
+<h2 id="name"></h2>
+<p id="price"></p>
+
+<button onclick="buy()">Acheter via WhatsApp</button>
+
+<script>
+let p = JSON.parse(localStorage.getItem("product"));
+
+document.getElementById("name").innerText = p.name;
+document.getElementById("price").innerText = p.price + " FCFA";
+
+function buy(){
+window.open(`https://wa.me/237696565654?text=Je veux ${p.name}`);
+}
+</script>
+
+</body>
+</html>

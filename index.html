@@ -41,6 +41,18 @@ header {
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   text-align: center;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: green;
+  color: white;
+  padding: 3px 6px;
+  font-size: 12px;
+  border-radius: 5px;
 }
 
 .card img {
@@ -56,6 +68,11 @@ button {
   margin-top: 10px;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.stars {
+  color: gold;
+  font-size: 14px;
 }
 </style>
 
@@ -79,20 +96,18 @@ Achetez local • Vendez facilement • Livraison rapide
 
 <script>
 const products = [
-{name:"Sac africain cuir", price:"15000 FCFA", img:"https://images.unsplash.com/photo-1593032465175-481ac7f401a0"},
-{name:"Chaussures homme Dakar", price:"20000 FCFA", img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
-{name:"Perruque naturelle Lagos", price:"25000 FCFA", img:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"},
-{name:"Poisson fumé Douala", price:"5000 FCFA", img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d"},
-{name:"Piment rouge Cameroun", price:"2000 FCFA", img:"https://images.unsplash.com/photo-1589308078059-be1415eab4c3"},
-{name:"Huile de palme bio", price:"3000 FCFA", img:"https://images.unsplash.com/photo-1604908177522-429e1a97c7c1"},
-{name:"Riz local 5kg", price:"8000 FCFA", img:"https://images.unsplash.com/photo-1586201375761-83865001e31c"},
-{name:"Montre homme luxe", price:"18000 FCFA", img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49"},
-{name:"Sac à main femme", price:"12000 FCFA", img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3"},
-{name:"Sandales cuir", price:"7000 FCFA", img:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb"},
-{name:"Tissu pagne wax", price:"6000 FCFA", img:"https://images.unsplash.com/photo-1593032465175-481ac7f401a0"},
-{name:"Téléphone occasion", price:"45000 FCFA", img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"},
-{name:"Casque audio", price:"10000 FCFA", img:"https://images.unsplash.com/photo-1518441902111-a5e9c7e1f3d7"},
-{name:"Chaise plastique", price:"5000 FCFA", img:"https://images.unsplash.com/photo-1582582494700-76b7c0c1c1a6"}
+{name:"Sac africain cuir", price:"15000 FCFA", img:"https://images.unsplash.com/photo-1593032465175-481ac7f401a0", seller:"Boutique Douala", rating:"⭐⭐⭐⭐⭐"},
+{name:"Chaussures homme Dakar", price:"20000 FCFA", img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff", seller:"Shop Sénégal", rating:"⭐⭐⭐⭐"},
+{name:"Perruque naturelle Lagos", price:"25000 FCFA", img:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9", seller:"Beauty Lagos", rating:"⭐⭐⭐⭐⭐"},
+{name:"Poisson fumé Douala", price:"5000 FCFA", img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d", seller:"Marché Central", rating:"⭐⭐⭐⭐"},
+{name:"Piment rouge Cameroun", price:"2000 FCFA", img:"https://images.unsplash.com/photo-1589308078059-be1415eab4c3", seller:"Agri Local", rating:"⭐⭐⭐⭐⭐"},
+{name:"Huile de palme bio", price:"3000 FCFA", img:"https://images.unsplash.com/photo-1604908177522-429e1a97c7c1", seller:"Bio Africa", rating:"⭐⭐⭐⭐"},
+{name:"Riz local 5kg", price:"8000 FCFA", img:"https://images.unsplash.com/photo-1586201375761-83865001e31c", seller:"Riz Cameroun", rating:"⭐⭐⭐⭐⭐"},
+{name:"Montre homme luxe", price:"18000 FCFA", img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49", seller:"Luxury Shop", rating:"⭐⭐⭐⭐"},
+{name:"Sac à main femme", price:"12000 FCFA", img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3", seller:"Fashion CM", rating:"⭐⭐⭐⭐⭐"},
+{name:"Sandales cuir", price:"7000 FCFA", img:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb", seller:"Artisan Local", rating:"⭐⭐⭐⭐"},
+{name:"Téléphone occasion", price:"45000 FCFA", img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9", seller:"Tech Store", rating:"⭐⭐⭐⭐⭐"},
+{name:"Chaise plastique", price:"5000 FCFA", img:"https://images.unsplash.com/photo-1582582494700-76b7c0c1c1a6", seller:"Maison CM", rating:"⭐⭐⭐⭐"}
 ];
 
 const container = document.getElementById("products");
@@ -100,13 +115,23 @@ const container = document.getElementById("products");
 products.forEach(p => {
   container.innerHTML += `
     <div class="card">
+      <div class="badge">Vendeur vérifié</div>
       <img src="${p.img}">
       <h4>${p.name}</h4>
       <p>${p.price}</p>
-      <button>Acheter</button>
+      <div class="stars">${p.rating}</div>
+      <small>${p.seller}</small><br>
+      <button onclick="commander('${p.name}', '${p.price}')">Commander</button>
     </div>
   `;
 });
+
+function commander(nom, prix){
+  const numero = "237696565654";
+  const message = `Bonjour, je veux commander : ${nom} au prix de ${prix}`;
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+}
 </script>
 
 </body>

@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>YORIX - Marketplace Cameroun</title>
+<title>YORIX - Super App Cameroun</title>
 
 <style>
 body {font-family: Arial; margin:0; background:#f5f5f5;}
@@ -69,13 +70,17 @@ padding:10px;
 position:fixed;
 right:10px;
 top:60px;
-width:250px;
+width:260px;
 display:none;
 border-radius:10px;
 box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
 
-.stars {color:gold;}
+input {
+width:100%;
+padding:8px;
+margin:5px 0;
+}
 </style>
 </head>
 
@@ -84,38 +89,49 @@ box-shadow:0 2px 10px rgba(0,0,0,0.2);
 <div class="topbar">
 <div><b>YORIX 🇨🇲</b></div>
 <div>
-<button onclick="toggleCart()">🛒 Panier (<span id="count">0</span>)</button>
+<button onclick="toggleCart()">🛒 (<span id="count">0</span>)</button>
 </div>
 </div>
 
 <div class="banner">
-Achetez local • Livraison rapide • Paiement sécurisé
+Marketplace • Livraison • Paiement sécurisé
 </div>
 
 <div class="container">
-<h3>Produits populaires</h3>
+<h3>Produits</h3>
 <div class="products" id="products"></div>
+
+<h3>Devenir vendeur</h3>
+<input id="vendorName" placeholder="Nom boutique">
+<input id="vendorPhone" placeholder="WhatsApp">
+<button onclick="registerVendor()">S'inscrire</button>
+<p id="vendorStatus"></p>
+
+<h3>Livraison rapide</h3>
+<button onclick="requestDelivery()">Demander un livreur</button>
+
+<h3>Admin Dashboard</h3>
+<div id="admin"></div>
+
 </div>
 
 <div class="cart" id="cart">
-<h4>Mon panier</h4>
+<h4>Panier</h4>
 <div id="cartItems"></div>
-<button onclick="checkout()">Commander via WhatsApp</button>
+<button onclick="checkout()">Commander (WhatsApp)</button>
+<button onclick="payer()">Payer maintenant</button>
 </div>
 
 <script>
 
 let cart = [];
+let vendors = [];
 
 const products = [
-{name:"Sac africain cuir", price:15000, img:"https://images.unsplash.com/photo-1593032465175-481ac7f401a0"},
-{name:"Chaussures homme Dakar", price:20000, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
-{name:"Perruque naturelle", price:25000, img:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"},
-{name:"Poisson fumé", price:5000, img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d"},
-{name:"Piment rouge", price:2000, img:"https://images.unsplash.com/photo-1589308078059-be1415eab4c3"},
-{name:"Huile de palme", price:3000, img:"https://images.unsplash.com/photo-1604908177522-429e1a97c7c1"},
-{name:"Riz local", price:8000, img:"https://images.unsplash.com/photo-1586201375761-83865001e31c"},
-{name:"Montre homme", price:18000, img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49"}
+{name:"Sac africain", price:15000, img:"https://images.unsplash.com/photo-1593032465175-481ac7f401a0"},
+{name:"Chaussures homme", price:20000, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+{name:"Perruque", price:25000, img:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"},
+{name:"Poisson fumé", price:5000, img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d"}
 ];
 
 const container = document.getElementById("products");
@@ -127,9 +143,8 @@ container.innerHTML += `
 <img src="${p.img}">
 <h4>${p.name}</h4>
 <p>${p.price} FCFA</p>
-<div class="stars">⭐⭐⭐⭐⭐</div>
-<button onclick='addToCart(${JSON.stringify(p)})'>Ajouter au panier</button>
-<button onclick='buyNow(${JSON.stringify(p)})'>Acheter maintenant</button>
+<button onclick='addToCart(${JSON.stringify(p)})'>Ajouter</button>
+<button onclick='buyNow(${JSON.stringify(p)})'>Acheter</button>
 </div>
 `;
 });
@@ -155,17 +170,57 @@ c.style.display = c.style.display === "block" ? "none" : "block";
 }
 
 function checkout(){
-let message = "Bonjour, je veux commander :%0A";
+let message = "Commande YORIX:%0A";
+message += "Paiement sécurisé requis.%0A";
+
 cart.forEach(i=>{
-message += `${i.name} - ${i.price} FCFA%0A`;
+let commission = i.price * 0.1;
+message += `${i.name} - ${i.price} FCFA (commission incluse)%0A`;
 });
 
 window.open(`https://wa.me/237696565654?text=${message}`);
 }
 
 function buyNow(p){
-window.open(`https://wa.me/237696565654?text=Bonjour, je veux acheter ${p.name} à ${p.price} FCFA`);
+window.open(`https://wa.me/237696565654?text=Je veux acheter ${p.name} à ${p.price} FCFA`);
 }
+
+function payer(){
+window.open("https://paystack.com/pay/yorix-demo");
+}
+
+function registerVendor(){
+let name = document.getElementById("vendorName").value;
+let phone = document.getElementById("vendorPhone").value;
+
+vendors.push({name, phone});
+
+document.getElementById("vendorStatus").innerText =
+"Compte vendeur créé (simulation)";
+loadAdmin();
+}
+
+function loadAdmin(){
+let html = "<h4>Produits</h4>";
+
+products.forEach(p=>{
+html += `<p>${p.name} - ${p.price}</p>`;
+});
+
+html += "<h4>Vendeurs</h4>";
+
+vendors.forEach(v=>{
+html += `<p>${v.name} - ${v.phone}</p>`;
+});
+
+document.getElementById("admin").innerHTML = html;
+}
+
+function requestDelivery(){
+window.open("https://wa.me/237696565654?text=Je veux une livraison rapide");
+}
+
+loadAdmin();
 
 </script>
 

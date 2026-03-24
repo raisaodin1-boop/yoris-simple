@@ -1,19 +1,147 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YORIX - Powering Everyday Life in Africa</title>
-    <meta name="description" content="YORIX connects you to everyday services in Africa: marketplace, delivery, local services and events." />
-    <meta property="og:title" content="YORIX - Powering Everyday Life in Africa" />
-    <meta property="og:description" content="Digital platform connecting people to everyday services in Africa" />
-    <meta property="og:image" content="https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="YORIX - Powering Everyday Life in Africa" />
-    <meta name="twitter:description" content="Digital platform connecting people to everyday services in Africa" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>YORIX - Marketplace Cameroun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+    }
+
+    header {
+      background: #0f172a;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: #22c55e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      padding: 15px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .title {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    .price {
+      color: green;
+      font-weight: bold;
+    }
+
+    button {
+      background: #0f172a;
+      color: white;
+      border: none;
+      padding: 8px;
+      width: 100%;
+      border-radius: 5px;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      background: #eee;
+      margin-top: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<header>
+  YORIX - Marketplace Cameroun 🇨🇲
+</header>
+
+<div class="hero">
+  Achetez local • Vendez facilement • Livraison rapide
+</div>
+
+<div class="container">
+
+  <h3>Produits populaires</h3>
+
+  <div class="products">
+
+```
+<div class="card">
+  <img src="https://via.placeholder.com/200">
+  <div class="title">Sac africain moderne</div>
+  <div class="price">15 000 FCFA</div>
+  <button onclick="addToCart()">Ajouter au panier</button>
+</div>
+
+<div class="card">
+  <img src="https://via.placeholder.com/200">
+  <div class="title">Chaussures homme</div>
+  <div class="price">20 000 FCFA</div>
+  <button onclick="addToCart()">Ajouter au panier</button>
+</div>
+
+<div class="card">
+  <img src="https://via.placeholder.com/200">
+  <div class="title">Perruque naturelle</div>
+  <div class="price">25 000 FCFA</div>
+  <button onclick="addToCart()">Ajouter au panier</button>
+</div>
+
+<div class="card">
+  <img src="https://via.placeholder.com/200">
+  <div class="title">Poisson fumé</div>
+  <div class="price">5 000 FCFA</div>
+  <button onclick="addToCart()">Ajouter au panier</button>
+</div>
+```
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 YORIX - Tous droits réservés
+</footer>
+
+<script>
+function addToCart() {
+  alert("Produit ajouté au panier !");
+}
+</script>
+
+</body>
 </html>

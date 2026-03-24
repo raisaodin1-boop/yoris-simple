@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Vendeur</title>
+</head>
+
+<body>
+
+<a href="index.html">⬅ Retour</a>
+
+<h2>Créer une boutique</h2>
+
+<input id="name" placeholder="Nom boutique"><br>
+<input id="phone" placeholder="WhatsApp"><br>
+
+<button onclick="save()">Créer</button>
+
+<p id="msg"></p>
+
+<script>
+function save(){
+let n = document.getElementById("name").value;
+let p = document.getElementById("phone").value;
+
+localStorage.setItem("vendor", JSON.stringify({n,p}));
+
+document.getElementById("msg").innerText="Compte créé";
+}
+</script>
+
+</body>
+</html>
